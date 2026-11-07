@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+.cache/
+site/
+leaderboard.csv
+equity_curves.csv
+leaderboard.png
+*.pyc
+.venv/

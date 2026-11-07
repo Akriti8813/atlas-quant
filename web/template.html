@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ATLAS QUANT · Research Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+<style>
+:root{--bg:#fff7f5;--card:#ffffff;--ink:#2a1a22;--mute:#8a6f78;--line:#f3dfe1;--pink:#ff4d6d;--rind:#23b26d;--glow:rgba(255,77,109,.16);--shadow:0 10px 30px -14px rgba(120,30,60,.25);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150d12;--card:#20141b;--ink:#fbeef0;--mute:#b79aa4;--line:#35212b;--glow:rgba(255,77,109,.22);--shadow:0 10px 30px -14px rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{--bg:#150d12;--card:#20141b;--ink:#fbeef0;--mute:#b79aa4;--line:#35212b;--glow:rgba(255,77,109,.22);--shadow:0 10px 30px -14px rgba(0,0,0,.7)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:"Bricolage Grotesque",Inter,system-ui,sans-serif;letter-spacing:-.02em}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 20px 80px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:6px 0 22px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.dot{width:30px;height:30px;border-radius:50%;background:conic-gradient(from 200deg,var(--pink),#ff8fa3,var(--rind),var(--pink));box-shadow:0 0 0 4px var(--glow)}
+.pill{font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--mute)}
+.hero{position:relative;padding:46px 28px 40px;border-radius:32px;background:radial-gradient(120% 140% at 0% 0%,var(--glow),transparent 55%),radial-gradient(90% 120% at 100% 100%,rgba(35,178,109,.16),transparent 55%),var(--card);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden}
+.seeds{position:absolute;inset:0;pointer-events:none}
+.seeds i{position:absolute;width:9px;height:14px;border-radius:50%;background:var(--ink);opacity:.08;animation:fl 7s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-14px) rotate(20deg)}}
+h1{font-size:clamp(34px,6.4vw,66px);line-height:1.02;margin:0 0 16px;font-weight:800;max-width:15ch}
+h1 .w{display:inline-block;margin-right:.22em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--pink),#ff8a5c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{max-width:54ch;color:var(--mute);font-size:17px;margin:0 0 24px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:0;cursor:pointer;font:600 14px Inter,sans-serif;padding:12px 20px;border-radius:99px;background:var(--pink);color:#fff;box-shadow:0 8px 20px -8px var(--pink);transition:transform .2s}
+.btn:hover{transform:translateY(-2px) scale(1.02)}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.banner{margin:16px 0 0;font-size:13px;color:var(--mute);display:flex;gap:8px;align-items:center}
+.banner b{color:var(--pink)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow);overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),var(--glow),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover::before{opacity:1}
+.k{font-size:12px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.v{font:800 34px "Bricolage Grotesque",Inter,sans-serif;margin-top:4px;letter-spacing:-.03em}
+.s{font-size:13px;color:var(--mute)}
+.sec{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:34px 0 14px}
+h2{margin:0;font-size:26px;font-weight:800}
+.seg{position:relative;display:flex;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:4px}
+.seg button{position:relative;z-index:1;border:0;background:none;color:var(--mute);font:600 13px Inter,sans-serif;padding:8px 14px;border-radius:99px;cursor:pointer;transition:color .2s}
+.seg button.on{color:#fff}
+.seg .thumb{position:absolute;top:4px;bottom:4px;left:0;border-radius:99px;background:var(--pink);transition:transform .35s cubic-bezier(.3,1.3,.5,1),width .35s}
+.chartbox{padding:16px 12px 12px}
+svg.ch{width:100%;height:auto;display:block;touch-action:none}
+.legend{display:flex;flex-wrap:wrap;gap:8px;padding:6px 8px 4px}
+.chip{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer}
+.chip i{width:9px;height:9px;border-radius:50%}.chip.off{opacity:.4}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:8px 10px;border-radius:12px;opacity:0;transition:opacity .15s;white-space:nowrap}
+.list{display:grid;gap:12px}
+.row{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center}
+.rank{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font:800 18px "Bricolage Grotesque",sans-serif;background:var(--glow);color:var(--pink)}
+.row.bm .rank{background:rgba(35,178,109,.16);color:var(--rind)}
+.nm{font-weight:700;font-size:16px}.tag{font-size:11px;font-weight:700;color:var(--rind);margin-left:6px}
+.stats{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--mute);margin-top:2px}
+.bar{height:6px;border-radius:9px;background:var(--line);margin-top:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--pink),#ff8a5c)}
+.row.bm .bar i{background:linear-gradient(90deg,var(--rind),#6ee7a8)}
+.big{font:800 28px "Bricolage Grotesque",sans-serif;text-align:right}.big small{display:block;font:600 11px Inter,sans-serif;color:var(--mute)}
+.steps{display:flex;flex-wrap:wrap;gap:8px}
+.steps span{padding:8px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:13px;font-weight:600}
+.steps .next{border-style:dashed;color:var(--mute)}
+footer{margin-top:34px;color:var(--mute);font-size:12.5px}
+@media (max-width:560px){.row{grid-template-columns:36px 1fr}.big{grid-column:2;text-align:left}.rank{width:36px;height:36px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="logo"><span class="dot"></span>ATLAS QUANT</div><span class="pill">Research lab · Phase 1–2</span></nav>
+
+<section class="hero">
+<div class="seeds" id="seeds"></div>
+<h1 id="h1">Test trading ideas <em>honestly.</em></h1>
+<p class="sub">Every strategy runs on the same data, the same costs, and only gets judged on days it never saw. No hype, just evidence.</p>
+<div class="btns">
+<button class="btn" id="pick">Load my results</button>
+<button class="btn ghost" id="reset">Reset view</button>
+<input type="file" id="file" accept=".csv" multiple hidden>
+</div>
+<div class="banner" id="banner"><b>Demo data</b> from a synthetic market. It shows the pipeline works, not that anything earns money.</div>
+</section>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="sec"><h2>Out-of-sample growth</h2><span class="s">After costs · tap a name to hide it</span></div>
+<div class="card chartbox" id="chartcard"><div class="legend" id="legend"></div><svg class="ch" id="ch" viewBox="0 0 800 320"></svg><div class="tip" id="tip"></div></div>
+
+<div class="sec"><h2>Leaderboard</h2>
+<div class="seg" id="seg"><span class="thumb"></span>
+<button data-k="Sharpe" class="on">Sharpe</button><button data-k="CAGR">Return</button><button data-k="MaxDD">Drawdown</button><button data-k="AnnTurnover">Turnover</button></div></div>
+<div class="list" id="list"></div>
+
+<div class="sec"><h2>The pipeline</h2></div>
+<div class="steps"><span>1 · Data + validation</span><span>2 · Backtest + costs</span><span>3 · Walk-forward</span><span>4 · Strategy competition</span><span class="next">Next · Pairs &amp; regimes</span><span class="next">Next · Risk engine</span><span class="next">Next · AI agents</span></div>
+<footer>Load <b>leaderboard.csv</b> (and optionally <b>equity_curves.csv</b>) from <code>python run.py</code> to see your own results here. Research tool, not investment advice.</footer>
+</div>
+
+<script>
+const DEMO=/*DATA*/null;
+let D=DEMO,sortK="Sharpe",hidden=new Set();
+function setBanner(){const b=document.querySelector("#banner");b.innerHTML=D.source==="real"?`<b>Real NIFTY data</b> · ${D.assets} stocks · through ${D.asof} · out-of-sample, after costs`:D.source==="user"?"<b>Your results</b> loaded from your CSV files. Nothing leaves your browser.":"<b>Demo data</b> from a synthetic market. It shows the pipeline works, not that anything earns money."}
+const $=s=>document.querySelector(s),M=window.Motion,hasM=!!(M&&M.animate);
+const PAL=["#ff4d6d","#ff9a3c","#8b5cf6","#06b6d4","#f43f5e","#eab308","#14b8a6"];
+const BM="BUY_HOLD (equal wt)";
+const pct=(v,d=1)=>v==null?"–":(v*100).toFixed(d)+"%",num=(v,d=2)=>v==null?"–":v.toFixed(d);
+const FMT={Sharpe:v=>num(v),CAGR:v=>pct(v),MaxDD:v=>pct(v),AnnTurnover:v=>num(v,1)+"×"};
+const LBL={Sharpe:"Sharpe",CAGR:"CAGR",MaxDD:"Max drawdown",AnnTurnover:"Turnover / yr"};
+const clean=n=>n.replace(/_/g," ");
+
+function anim(els,delay=.05){if(!els.length)return;hasM?M.animate(els,{opacity:[0,1],transform:["translateY(16px)","none"]},{duration:.55,delay:M.stagger(delay),ease:"easeOut"}):0}
+function count(el,to,f){hasM?M.animate(0,to,{duration:1.2,ease:"easeOut",onUpdate:v=>el.textContent=f(v)}):el.textContent=f(to)}
+
+// hero text effect (blur-in per word) + floating seeds
+(function(){const h=$("#h1");const w=[...h.childNodes].flatMap(n=>n.nodeType===3?n.textContent.split(/\s+/).filter(Boolean).map(t=>[t,0]):[[n.textContent,1]]);
+h.innerHTML=w.map(([t,e])=>e?`<em class="w">${t}</em>`:`<span class="w">${t}</span>`).join("");
+if(hasM)M.animate(h.querySelectorAll(".w"),{opacity:[0,1],filter:["blur(10px)","blur(0px)"],transform:["translateY(12px)","none"]},{duration:.7,delay:M.stagger(.09)});
+$("#seeds").innerHTML=Array.from({length:14},(_,i)=>`<i style="left:${(i*37+8)%96}%;top:${(i*53+10)%90}%;animation-delay:${-i*.6}s;transform:rotate(${i*25}deg)"></i>`).join("")})();
+
+// spotlight
+document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".card");if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px")});
+
+function sorted(){const r=[...D.rows];const low=sortK==="AnnTurnover";return r.sort((a,b)=>low?(a[sortK]??9e9)-(b[sortK]??9e9):(b[sortK]??-9e9)-(a[sortK]??-9e9))}
+
+function kpis(){const rows=D.rows,bm=rows.find(r=>r.name===BM),st=rows.filter(r=>r.name!==BM),best=[...st].sort((a,b)=>b.Sharpe-a.Sharpe)[0];
+const beat=bm?st.filter(r=>r.Sharpe>bm.Sharpe).length:0;
+const items=[["Top strategy",clean(best.name),null,"best Sharpe"],["Best Sharpe",best.Sharpe,v=>num(v),bm?"benchmark "+num(bm.Sharpe):""],["Beat benchmark",beat,v=>Math.round(v)+" / "+st.length,"by Sharpe, after costs"],["Best CAGR",Math.max(...st.map(r=>r.CAGR)),v=>pct(v),"annualised"]];
+$("#kpis").innerHTML=items.map(([k,v,f,s])=>`<div class="card"><div class="k">${k}</div><div class="v">${f?"0":v}</div><div class="s">${s}</div></div>`).join("");
+document.querySelectorAll("#kpis .card").forEach((c,i)=>{const it=items[i];if(it[2])count(c.querySelector(".v"),it[1],it[2]);else c.querySelector(".v").style.fontSize="24px"});
+anim([...document.querySelectorAll("#kpis .card")],.08)}
+
+function list(){const rows=sorted(),vals=rows.map(r=>r[sortK]),lo=sortK==="AnnTurnover"?0:Math.min(0,...vals),hi=Math.max(...vals.map(Math.abs));
+$("#list").innerHTML=rows.map((r,i)=>{const w=hi?Math.max(4,Math.abs(r[sortK]??0)/hi*100):4;
+return `<div class="card row ${r.name===BM?"bm":""}"><div class="rank">${i+1}</div><div><div class="nm">${clean(r.name)}${r.name===BM?'<span class="tag">BENCHMARK</span>':""}</div>
+<div class="stats"><span>Return ${pct(r.CAGR)}</span><span>Vol ${pct(r.AnnVol)}</span><span>Drawdown ${pct(r.MaxDD)}</span><span>Turnover ${num(r.AnnTurnover,1)}×</span><span>Win ${pct(r.WinRate,0)}</span></div>
+<div class="bar"><i data-w="${w}"></i></div></div><div class="big">${FMT[sortK](r[sortK])}<small>${LBL[sortK]}</small></div></div>`}).join("");
+const bars=[...document.querySelectorAll(".bar i")];
+bars.forEach(b=>hasM?M.animate(b,{width:["0%",b.dataset.w+"%"]},{duration:.9,ease:"easeOut"}):b.style.width=b.dataset.w+"%");
+bars.forEach(b=>setTimeout(()=>b.style.width=b.dataset.w+"%",950));
+anim([...document.querySelectorAll("#list .row")],.04)}
+
+function thumb(){const b=document.querySelector("#seg .on"),t=$("#seg .thumb");t.style.width=b.offsetWidth+"px";t.style.transform=`translateX(${b.offsetLeft-4}px)`}
+$("#seg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x===b));sortK=b.dataset.k;thumb();list()});
+
+function chart(){const names=Object.keys(D.series||{}),svg=$("#ch");
+if(!names.length){svg.innerHTML=`<text x="400" y="160" text-anchor="middle" fill="var(--mute)" font-size="15">Load equity_curves.csv to see growth curves</text>`;$("#legend").innerHTML="";return}
+const on=names.filter(n=>!hidden.has(n)),n=D.dates.length,all=on.flatMap(k=>D.series[k]),mn=Math.min(1,...all),mx=Math.max(1,...all),L=44,R=12,T=10,B=26;
+const X=i=>L+i/(n-1)*(800-L-R),Y=v=>T+(1-(v-mn)/(mx-mn||1))*(320-T-B);
+let g="";for(let i=0;i<=4;i++){const v=mn+(mx-mn)*i/4,y=Y(v);g+=`<line x1="${L}" x2="788" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${L-8}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--mute)">${v.toFixed(2)}</text>`}
+const step=Math.ceil(n/6);for(let i=0;i<n;i+=step)g+=`<text x="${X(i)}" y="312" font-size="11" text-anchor="middle" fill="var(--mute)">${D.dates[i].slice(0,4)}</text>`;
+g+=`<line x1="${L}" x2="788" y1="${Y(1)}" y2="${Y(1)}" stroke="var(--mute)" stroke-dasharray="2 5" opacity=".6"/>`;
+const col=k=>k===BM?"#23b26d":PAL[names.filter(x=>x!==BM).indexOf(k)%PAL.length];
+on.forEach(k=>{const d=D.series[k].map((v,i)=>(i?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1)).join("");
+g+=`<path class="ln" d="${d}" fill="none" stroke="${col(k)}" stroke-width="${k===BM?2.4:2}" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="${k===BM?"0.012 0.01":"1"}"/>`});
+g+=`<line id="cur" y1="${T}" y2="${320-B}" stroke="var(--mute)" opacity="0"/>`;svg.innerHTML=g;
+if(hasM)svg.querySelectorAll(".ln").forEach((p,i)=>{if(p.getAttribute("stroke-dasharray")==="1")M.animate(p,{strokeDashoffset:[1,0]},{duration:1.4,delay:i*.08,ease:"easeOut"})});
+$("#legend").innerHTML=names.map(k=>`<button class="chip ${hidden.has(k)?"off":""}" data-k="${k}"><i style="background:${col(k)}"></i>${clean(k)}</button>`).join("");
+svg._m={X,n,on,col}}
+$("#legend").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;const k=b.dataset.k;hidden.has(k)?hidden.delete(k):hidden.add(k);chart()});
+$("#ch").addEventListener("pointermove",e=>{const s=$("#ch"),m=s._m;if(!m)return;const r=s.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*800;let i=Math.round((x-44)/(756-12)*(m.n-1));i=Math.max(0,Math.min(m.n-1,i));
+const c=$("#cur");c.setAttribute("x1",m.X(i));c.setAttribute("x2",m.X(i));c.setAttribute("opacity",.6);
+const t=$("#tip"),cr=$("#chartcard").getBoundingClientRect();t.innerHTML=`<b>${D.dates[i]}</b><br>`+m.on.map(k=>`<span style="color:${m.col(k)}">●</span> ${clean(k)} ${D.series[k][i].toFixed(2)}`).join("<br>");
+t.style.opacity=1;t.style.left=Math.min(e.clientX-cr.left+14,cr.width-t.offsetWidth-8)+"px";t.style.top=Math.max(8,e.clientY-cr.top-t.offsetHeight-10)+"px"});
+$("#ch").addEventListener("pointerleave",()=>{$("#tip").style.opacity=0;const c=$("#cur");c&&c.setAttribute("opacity",0)});
+
+function renderAll(){setBanner();kpis();chart();list();requestAnimationFrame(thumb)}
+renderAll();addEventListener("resize",thumb);
+
+// load user CSVs
+const parse=t=>t.trim().split(/\r?\n/).map(l=>l.split(","));
+$("#pick").onclick=()=>$("#file").click();
+$("#reset").onclick=()=>{D=DEMO;hidden.clear();renderAll()};
+$("#file").onchange=async e=>{let rows=null,cur=null;
+for(const f of e.target.files){const a=parse(await f.text()),h=a[0];
+if(h.includes("Sharpe")){rows=a.slice(1).map(r=>{const o={name:r[0]};h.slice(1).forEach((k,i)=>o[k]=r[i+1]===""||isNaN(+r[i+1])?null:+r[i+1]);return o})}
+else{const k=h.slice(1),body=a.slice(1).filter((_,i)=>i%21===0);cur={dates:body.map(r=>r[0].slice(0,7)),series:Object.fromEntries(k.map((n,j)=>[n,body.map(r=>+r[j+1])]))}}}
+if(!rows){alert("Pick leaderboard.csv (and optionally equity_curves.csv) from python run.py");return}
+D={rows,dates:cur?cur.dates:[],series:cur?cur.series:{},source:"user"};hidden.clear();renderAll()};
+</script>
+</body>
+</html>
